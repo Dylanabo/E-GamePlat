@@ -1,7 +1,5 @@
 # E-GamePlat
-Une plateforme web qui pourras héberger des jeux
-
-
+Une plateforme permettant de jouer en ligne à une sélection de jeux, directement depuis son navigateur
 
 *** PLANNEUR ***
 ****************
@@ -9,6 +7,16 @@ Une plateforme web qui pourras héberger des jeux
 ==========
 Pré-requis
 ==========
+
+# A faire No code:
+-Faire fonctionner le project sur Docker
+-Crée un modèle/maquette du projet sur sigma !!! (je pense important)
+
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true" poster="./Assets/E-GamePlat.mp4">
+    <source src="path/to/video.mp4" type="video/mp4">
+  </video>
+</figure>
 
 # A faire:
 -Crée une base de donnée utilisateur
