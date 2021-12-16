@@ -13,7 +13,6 @@ Pré-requis
 -Crée un modèle/maquette du projet sur sigma !!! (je pense important)
 
 ![](./Assets/E-GamePlat.gif)
-![](./Assets/E-GamePlat.mp4)
 
 # A faire:
 -Crée une base de donnée utilisateur
