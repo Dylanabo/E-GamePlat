@@ -12,11 +12,7 @@ Pré-requis
 -Faire fonctionner le project sur Docker
 -Crée un modèle/maquette du projet sur sigma !!! (je pense important)
 
-<figure class="video_container">
-  <video controls="true" allowfullscreen="true" poster="./Assets/E-GamePlat.mp4">
-    <source src="path/to/video.mp4" type="video/mp4">
-  </video>
-</figure>
+![](./Assets/E-GamePlat.gif)
 
 # A faire:
 -Crée une base de donnée utilisateur
