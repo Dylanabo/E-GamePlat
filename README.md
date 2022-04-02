@@ -2,7 +2,6 @@
 Une plateforme permettant de jouer en ligne à une sélection de jeux, directement depuis son navigateur
 
 *** PLANNEUR ***
-****************
 
 ==========
 Pré-requis
