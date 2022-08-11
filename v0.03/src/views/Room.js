@@ -1,11 +1,9 @@
-import React from 'react';
-import Header from './components/hearder';
-import { CreateRoomButton } from './components/createRoom';
-import { ListRoom } from './components/listRoom';
+import { useState } from "react";
 import '../assets/css/home.css';
+import Header from './components/hearder';
 
-const home = () => {
 
+const Room = () => {
     return (
         <div id='Bodypage' className='background'>
             <script src="node_modules/store/store.js"></script>
@@ -19,12 +17,9 @@ const home = () => {
             </div>
             <div className='content center'>
 
-                <p className='Title'>Room available</p>
-                <ListRoom />
-                <CreateRoomButton />
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default home;
+export default Room;

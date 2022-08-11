@@ -1,6 +1,9 @@
 import React from 'react';
 import Select from 'react-select'
 import { Slider, InputNumber, Row, Col } from 'antd';
+import socket from './socket'
+import { Navigate } from 'react-router-dom';
+const axios = require('axios');
 
 export class CreateRoomButton extends React.Component {
     constructor(props) {
@@ -52,7 +55,7 @@ export class Content extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            game: [{ value: "yannouf", label: "Yannouf" }, { value: "epiquizz", label: "EpiQuizz" }],
+            game: [{ value: "yannouf", label: "Yannouf" }, { value: "2048", label: "2048" }, { value: "epiquizz", label: "EpiQuizz" }],
             chosedGame: "",
             nb_player: 0
         };
@@ -62,6 +65,8 @@ export class Content extends React.Component {
         this.setState({ chosedGame: e.value });
         if (e.value == "yannouf") {
             this.setState({nb_player: 3})
+        } else if (e.value == "2048") {
+            this.setState({nb_player: 1})
         }
         console.log("e)", this.state.chosedGame)
     }
@@ -71,6 +76,27 @@ export class Content extends React.Component {
             inputValue: value,
         });
     };
+    
+    onValidate = async (e) => {
+        console.log("Héééé");
+        if (this.state.nb_player != 0) {
+            // socket.auth = {'chosedGame': this.state.chosedGame, 'nb_player': this.state.nb_player };
+            // socket.connect();
+            let json_data = {player: localStorage.getItem('user'), nm_game: this.state.chosedGame, nb_max: this.state.nb_player };
+            console.log("Héééé + 0  => "+ this.state.chosedGame);
+
+            if (this.state.chosedGame == "2048") {
+                let res = await axios.post('http://localhost:8079/create_room', json_data);
+
+                let data = res.data;
+                console.log("validate" + data);
+                if (data) {
+                  Navigate("/room" + data);
+                }
+            }
+            this.props.buttonClick();
+        }
+    }
 
     render() {
         const { inputValue } = this.state.nb_player;
@@ -86,12 +112,12 @@ export class Content extends React.Component {
                 <p>
                     CREATE A ROOM
                 </p>
-                <p className="modal-content">
+                <div className="modal-content">
                     <div className='SelectGame'>
                         <Select options={this.state.game} onChange={this.handleChange} />
                     </div>
                     {this.state.chosedGame == "yannouf"
-                        && <div><p>3 Player Max</p></div>
+                        && <div><p>3 Player Required </p></div>
                     }
                     {this.state.chosedGame == "epiquizz" && <Row>
                         <Col span={12}>
@@ -112,8 +138,8 @@ export class Content extends React.Component {
                             />
                         </Col>
                     </Row>}
-                    {this.state.nb_player != 0 && <Button>Validate</Button>}
-                </p>
+                    {this.state.nb_player != 0 && <button className="button ceenter" onClick={this.onValidate} >Validate</button>}
+                </div>
             </div>
         );
     }

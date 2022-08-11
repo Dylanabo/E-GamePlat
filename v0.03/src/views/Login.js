@@ -68,8 +68,10 @@ const Login = () => {
 
       let data = res.data;
       console.log(data);
-      if (data == "Connected")
+      if (data == "Connected") {
+        localStorage.setItem('user', name);
         navigate("/home");
+      }
       setValidate({});
       setEmail("");
       setPassword("");

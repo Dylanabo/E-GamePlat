@@ -1,6 +1,9 @@
 import React from 'react';
 
+const name = localStorage.getItem('user');
+
 class Header extends React.Component {
+
     render() {
         return (
                 <nav className="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
@@ -8,6 +11,7 @@ class Header extends React.Component {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <a className="navbar-brand" href="/home">E-GAMEPLAT</a>
+                    <p className="navbar-name"> {name} </p>
                 </nav>
         )
     }

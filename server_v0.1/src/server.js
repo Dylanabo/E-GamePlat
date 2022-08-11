@@ -7,6 +7,7 @@ const sequelize = new Sequelize("mydb", "root", "3S6u2HsZr", {
     dialect: "mysql",
     host: "localhost"
 });
+
 const corsOptions ={
     origin:'*', 
     credentials:true,            //access-control-allow-credentials:true
@@ -80,27 +81,35 @@ app.post('/register', (request, res) => {
 })
 
 app.post('/create_room', (req, res) => {
-    if (!req.body.nm_game && !req.body.nb_max && !req.body.player)
-    sequelize.query("INSERT INTO room (nm_game, nb_player_max, player) VALUES ( '" + req.body.nm_game + "', '" + req.body.nb_max + "', " + JSON.stringify(req.body.player) + "'").then(([results, metadata]) => {
-        console.log(results);
-        if (!results.length) {
+    if (req.body.nm_game && req.body.nb_max && req.body.player) {
+
+        sequelize.query("INSERT INTO room (nm_game, nb_player_max, player) VALUES ( '" + req.body.nm_game + "', '" + req.body.nb_max + "', '" + JSON.stringify(req.body.player) + "')").then(([results, metadata]) => {
+            console.log(results);
             res.status = 200;
-            res.send("No room")
-        } else {
-            res.json(results);
-        }
-    })
+            if (!results) {
+                console.log("étrreé" + results);
+                res.send("No room")
+            } else {
+                res.send("'" + results + "'");
+            }
+        })
+    } else
+        res.send("no enough info")
 })
 
 app.post('/del_room', (req, res) => {
-    if (!req.body.id_room)
+    if (req.body.id_room)
     {
         try {
-            sequelize.query("DELETE FROM room WHERE idroom = '" + req.body.id_room +"'")
+            sequelize.query("DELETE FROM room WHERE idroom = '" + req.body.id_room +"'").then(
+                res.send("Room " + req.body.id_room + " deleted")
+            )
+
         } catch (error) {
             console.error(error);
         }
-    }
+    } else
+        res.send("no id room info")
 })
 
 app.get('/room', (req, res) => {
@@ -115,6 +124,23 @@ app.get('/room', (req, res) => {
         }
     })
 })
+
+// const httpServer = require("http").createServer();
+// const io = require("socket.io")(httpServer, {
+//   cors: {
+//     origin: "http://localhost:8078",
+//     credentials: true
+//   },
+// });
+
+// io.on('connection', (socket) => {
+//     console.log('a user connected');
+//     socket.on('disconnect', () => {
+//         console.log('user disconnected');
+//       });
+// });
+
+// httpServer.listen(8078);
 
 app.listen(8079, () => {
     console.log("Server up and running")

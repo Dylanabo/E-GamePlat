@@ -1,4 +1,6 @@
 import React from 'react';
+import '../../assets/css/home.css';
+
 const axios = require('axios');
 
 export class ListRoom extends React.Component {
@@ -37,11 +39,11 @@ export class ListRoom extends React.Component {
                     {this.state.room.map(room => {
                         console.log(room)
                         return (
-                            <li key={`room-${room.idroom}`}>
-                                <div className='roomVue'>
-                                    <div className='roomVueNmGame left'>
+                            <li key={`room-${room.idroom}`}  className='room'>
+                                <div className='roomVue' >
+                                    <a className='roomVueNmGame left' href='www.google.fr'>
                                         {room.nm_game}
-                                    </div>
+                                    </a>
                                     <div className='roomVueNbPlayer right'>
                                         {room.nb_player}/{room.nb_player_max}
                                     </div>
