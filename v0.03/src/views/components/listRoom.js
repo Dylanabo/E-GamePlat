@@ -41,11 +41,11 @@ export class ListRoom extends React.Component {
                         return (
                             <li key={`room-${room.idroom}`}  className='room'>
                                 <div className='roomVue' >
-                                    <a className='roomVueNmGame left' href='www.google.fr'>
+                                    <a className='roomVueNmGame left' href={`room${room.idroom}`}>
                                         {room.nm_game}
                                     </a>
                                     <div className='roomVueNbPlayer right'>
-                                        {room.nb_player}/{room.nb_player_max}
+                                        {room.nb_player_max === 1 ? room.nb_player_max : room.nb_player + '/' + room.nb_player_max }
                                     </div>
                                 </div>
                             </li>

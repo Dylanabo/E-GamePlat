@@ -1,13 +1,11 @@
-import { useState } from "react";
-import '../assets/css/home.css';
+import React from 'react';
 import Header from './components/hearder';
-import { useParams } from "react-router-dom";
-import {GameRoom} from "./components/GameRoom";
+import { CreateRoomButton } from './components/createRoom';
+import { Game2048 } from './components/Games/2048';
+import '../assets/css/home.css';
 
-const Room = () => {
-    let { id } = useParams();
+const gametest = () => {
 
-    
     return (
         <div id='Bodypage' className='background'>
             <script src="node_modules/store/store.js"></script>
@@ -19,12 +17,13 @@ const Room = () => {
                 <div className="line"></div>
                 <div className="line"></div>
             </div>
-            <p className="Title">GAME :{id}</p>
             <div className='content center'>
-                <GameRoom id={id}/>
+
+                <p className='Title'>Room available</p>
+                <Game2048 />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Room;
+export default gametest;

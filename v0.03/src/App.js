@@ -7,6 +7,7 @@ import Register from "./views/Register";
 import Forgot from "./views/Forgot";
 import Home from "./views/Home";
 import Room from "./views/Room";
+import Gametest from "./views/GameTest";
 
 function App() {
   console.log("app")
@@ -20,7 +21,8 @@ function App() {
       <Route path="/forgot-password" element={<Forgot/>} />
       <Route path="/" element={<Login/>} />
       {/* Route Game/Room */}
-      <Route path="/room{id}" element={<Room/>} />
+      <Route path="/room:id" element={<Room/>} />
+      <Route path="/test2048" element={<Gametest/>} />
 
       </Routes>
   </BrowserRouter>

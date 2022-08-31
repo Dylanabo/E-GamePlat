@@ -112,6 +112,20 @@ app.post('/del_room', (req, res) => {
         res.send("no id room info")
 })
 
+app.get('/room:id', (req, res) => {
+    sequelize.query("SELECT * FROM room WHERE idroom = " + req.params.id).then(([results, metadata]) => {
+        console.log(results);
+        if (!results.length) {
+            res.status = 100;
+        } else {
+            console.log("results send");
+            res.status = 200;
+            return res.send(results);
+        }
+    })
+})
+
+
 app.get('/room', (req, res) => {
     sequelize.query("SELECT * FROM room").then(([results, metadata]) => {
         console.log(results);

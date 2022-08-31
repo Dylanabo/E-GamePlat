@@ -12,10 +12,10 @@ const home = () => {
             <script src="node_modules/jquery/dist/jquery.js"></script>
             <script src="js/base.js"></script>
             <Header />
-            <div class="lines">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
+            <div className="lines">
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
             </div>
             <div className='content center'>
 
