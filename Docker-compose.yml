@@ -1,0 +1,54 @@
+version: '3.7'
+
+x-common-variables: &common-variables
+  MYSQL_USER: egameroot
+  MYSQL_PASSWORD: egamepassword
+  MYSQL_DATABASE: egamedb
+  REACT_APP_SERVER_PORT: 8080
+
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "8081:80"
+  server:
+    build: ./server_v0.1
+    restart: always
+    environment:
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - "${REACT_APP_SERVER_PORT}:${REACT_APP_SERVER_PORT}"
+    depends_on:
+      - db
+  client:
+    build: ./v0.03
+    restart: always
+    ports:
+      - "3000:3000"
+    links:
+      - server
+    environment:
+      <<: *common-variables
+      NODE_PATH: src
+      PORT: 3000
+      REACT_APP_SERVER_PORT: ${REACT_APP_SERVER_PORT}
+    volumes:
+      - ./client_v0.1/src:/usr/src/app/src

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../assets/css/home.css';
+import '../../assets/css/listrooms.css';
 
 const axios = require('axios');
 

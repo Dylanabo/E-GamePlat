@@ -1,5 +1,5 @@
 import { useState } from "react";
-import '../assets/css/home.css';
+import '../assets/css/listrooms.css';
 import Header from './components/hearder';
 import { useParams } from "react-router-dom";
 import {GameRoom} from "./components/GameRoom";
