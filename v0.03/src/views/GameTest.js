@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './components/hearder';
 import { CreateRoomButton } from './components/createRoom';
-import { Game2048 } from './components/Games/2048';
+import { Game2048 } from './components/Games/2048/2048';
 import '../assets/css/home.css';
 
 const gametest = () => {
@@ -14,12 +14,12 @@ const gametest = () => {
             <Header />
             <div className="lines">
                 <div className="line"></div>
-                <div className="line"></div>
+                <div className="line display-none"></div>
                 <div className="line"></div>
             </div>
             <div className='content center'>
 
-                <p className='Title'>Room available</p>
+                <p className='Title'>2048 TEST</p>
                 <Game2048 />
             </div>
         </div>

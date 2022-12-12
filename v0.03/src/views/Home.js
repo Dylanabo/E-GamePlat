@@ -14,7 +14,7 @@ const home = () => {
             <Header />
             <div className="lines">
                 <div className="line"></div>
-                <div className="line"></div>
+                <div className="line display-none"></div>
                 <div className="line"></div>
             </div>
             <div className='content center'>

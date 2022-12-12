@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import React from 'react';
 import { useParams } from "react-router-dom";
-import  "./2048board.js";
+import "./../../../../assets/css/Games/2048.scss";
 
 const axios = require('axios');
 var rotateLeft = function (matrix) {
@@ -108,6 +108,7 @@ class Board {
         });
     }
     addRandomTile() {
+        console.log("add random tile")
         var emptyCells = [];
         for (var r = 0; r < Board.size; ++r) {
             for (var c = 0; c < Board.size; ++c) {
@@ -181,6 +182,7 @@ export class Game2048 extends React.Component {
             nb_player_max: 0,
             id: 0,
             done: false,
+            state: false,
             board: new Board
         };
     }
@@ -204,11 +206,8 @@ export class Game2048 extends React.Component {
         if (this.state.board.hasWon()) {
             return;
         }
-        if (event.touches.length != 1) {
-            return;
-        }
-        this.startX = event.touches[0].screenX;
-        this.startY = event.touches[0].screenY;
+        console.log("Start ? ");
+        this.setState({state: true});
         event.preventDefault();
     }
 
@@ -242,26 +241,31 @@ export class Game2048 extends React.Component {
 
     render() {
         var cells = this.state.board.cells.map((row, rowIndex) => {
-          return (
-            <div>
-                fez
-            <div key={rowIndex}>
-              { row.map((_, columnIndex) => <Cell key={rowIndex * Board.size + columnIndex} />) }
-            </div>
-            </div>
-          );
+            return (
+                <div>
+                    <div key={rowIndex}>
+                        {row.map((_, columnIndex) => <Cell key={rowIndex * Board.size + columnIndex} />)}
+                    </div>
+                </div>
+            );
         });
         var tiles = this.state.board.tiles
-          .filter(tile => tile.value != 0)
-          .map(tile => <TileView tile={tile} key={tile.id} />);
+            .filter(tile => tile.value != 0)
+            .map(tile => <TileView tile={tile} key={tile.id} />);
+        console.log("title = ", tiles);
         return (
-          <div className='board' onTouchStart={this.handleTouchStart.bind(this)} onTouchEnd={this.handleTouchEnd.bind(this)} tabIndex="1">
-            {cells}
-            {tiles}
-            <GameEndOverlay board={this.state.board} onRestart={this.restartGame.bind(this)} />
-          </div>
+            <div>
+                <div className='board' onTouchStart={this.handleTouchStart.bind(this)} onTouchEnd={this.handleTouchEnd.bind(this)} tabIndex="1">
+                    {cells}
+                    {tiles}
+                    <GameEndOverlay board={this.state.board} onRestart={this.restartGame.bind(this)} />
+                </div>
+                {!this.state.state && <div>
+                    <button className="Start" onClick={this.handleTouchStart.bind(this)} onTouchEnd={this.handleTouchStart.bind(this)}>Start</button>
+                </div>}
+            </div>
         );
-      }
+    }
 }
 
 class Cell extends React.Component {
