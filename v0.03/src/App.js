@@ -8,6 +8,7 @@ import Forgot from "./views/Forgot";
 import Home from "./views/Home";
 import Room from "./views/Room";
 import Gametest from "./views/GameTest";
+import Matpling from "./views/MatplingPage";
 
 function App() {
   console.log("app")
@@ -23,6 +24,7 @@ function App() {
       {/* Route Game/Room */}
       <Route path="/room:id" element={<Room/>} />
       <Route path="/test2048" element={<Gametest/>} />
+      <Route path="/matpling" element={<Matpling/>} />
 
       </Routes>
   </BrowserRouter>

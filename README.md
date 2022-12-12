@@ -22,9 +22,11 @@ Pré-requis
 Accueil
 =======
 
-# A faire:
+# Fait :
 -Afficher les rooms crées public
 -Pouvoir créer une room
+
+# A faire:
 -Pouvoir rejoindre une room
 
 =====
